@@ -32,8 +32,20 @@ public class Restaurant {
         this.tablesList.add(table);
    }
 
+   public String checkTable(int table, int hour){ // test funkcija
+        if(tablesList.get(table).getAvailability(hour).equals("available")){
+            System.out.println("Available");
+            return "Available";
+        }
+        else System.out.println("not available");
+        return "Unavailable";
+   }
+
    public void removeTable(int tableId){
 
    }
+    public void unavailableify(int table, int hour){ //test funkcija
+       tablesList.get(table).getMap().replace(String.valueOf(hour), "available", "Unavailable");
+    }
 
 }
