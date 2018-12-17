@@ -6,9 +6,7 @@ public class ReservationSystem {
         //set reservation
     }
 
-    public boolean isTableFree(int tableId, int hour){
-        return true;
-    }
+    public boolean isTableFree(int tableId, int hour){return true;}
 
     public boolean cancelReservation(int customerId,int tableId, int hour){
         return true;

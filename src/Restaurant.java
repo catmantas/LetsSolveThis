@@ -44,8 +44,17 @@ public class Restaurant {
    public void removeTable(int tableId){
 
    }
-    public void unavailableify(int table, int hour){ //test funkcija
-       tablesList.get(table).getMap().replace(String.valueOf(hour), "available", "Unavailable");
-    }
+   public void reserve(int table, int hour){ //test funkcija
+        tablesList.get(table).returnSchedule().replace(String.valueOf(hour), "available", "Unavailable");
+   }
+   public void schedule(int table){
+       System.out.println("\n" + this.restaurantName + "\nTable " + tablesList.get(table).getTableId());
+        for(int i = 0; i <= 24; i++){
+            System.out.println(i + "    " + tablesList.get(table).returnSchedule().get(String.valueOf(i)));
+        }
+   }
+   public ArrayList getTables(){
+        return tablesList;
+   }
 
 }

@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Table {
 
@@ -42,15 +40,15 @@ public class Table {
     public void setNumberOfSeats(int numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
     }
+
     public HashMap returnSchedule(){
         return this.tableSchedule;
     }
+
     public String getAvailability(int hour){
         return tableSchedule.get(String.valueOf(hour));
     }
-    public HashMap getMap(){
-        return tableSchedule;
-    }
+
 
 
 }
