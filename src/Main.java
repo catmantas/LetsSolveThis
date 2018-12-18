@@ -10,14 +10,14 @@ public class Main {
         kebab.addTable(new Table(1, 2));
         kebab.addTable(new Table(2,2));
 
-        kebab.reserve(1, 21);
-        kebab.reserve(1, 15);
+        kebab.reserve(1, 21,2);
+        kebab.reserve(1, 15, 3);
 
-        pizza.checkTable(0, 3);
-        pizza.reserve(0, 3);
-        pizza.checkTable(0,3);
-        pizza.schedule(0);
-        kebab.schedule(1);
+        //pizza.checkTable(0, 3);
+        pizza.reserve(0, 3, 4);
+        //pizza.checkTable(0,3);
+        //pizza.schedule(0);
+        //kebab.schedule(1);
 
 
 
