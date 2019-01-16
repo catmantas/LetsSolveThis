@@ -7,25 +7,30 @@ import java.util.Scanner;
 
 public class Restaurant {
 
-    String restaurantName;
-    int ranking;
-    ArrayList<Restaurant> restaurantList = new ArrayList<>();
-    ArrayList<Table> tablesList;
+    private String restaurantName;
+    private int ranking;
+    private ArrayList<Restaurant> restaurantList = new ArrayList<>();
+    private int restaurantId;
+    private ArrayList<Table> tablesList;
 
-    public Restaurant(String name, int ranking){
+    public Restaurant(int restId, String name, int ranking){
+        this.restaurantId = restId;
         this.restaurantName = name;
         this.ranking = ranking;
-        this.tablesList = new ArrayList<Table>();
+        this.tablesList = new ArrayList<>();
     }
     public Restaurant()throws FileNotFoundException {
+
+        this.tablesList = new ArrayList<>();
         Scanner scan = new Scanner(new File("restaurants.txt"));
         scan.useDelimiter(",|\n");
 
         while(scan.hasNext()){
+            int id = scan.nextInt();
             String name = scan.next();
             int ranking = scan.nextInt();
 
-            Restaurant newRest = new Restaurant(name, ranking);
+            Restaurant newRest = new Restaurant(id, name, ranking);
             restaurantList.add(newRest);
         }
     }
@@ -62,8 +67,9 @@ public class Restaurant {
    public void removeTable(int tableId){
 
    }
-   public void reserve(int table, int hour, int ppl){
-        if(ppl <= tablesList.get(table).getNumberOfSeats()){
+   public void reserve(int table, int hour, int ppl)throws IOException{
+        Table t = new Table();
+        if(ppl <= tablesList.get(table).getNumberOfSeats()) {//|| ppl <= t.getTables().get(table).getNumberOfSeats()){
             tablesList.get(table).returnSchedule().replace(String.valueOf(hour), "available", "unavailable");
             System.out.println("Table reserved");
         }
@@ -77,8 +83,9 @@ public class Restaurant {
         }
    }
    public ArrayList getTables(){
-        return tablesList;
+        return this.tablesList;
    }
+
    public void saveRestaurants()throws IOException {
        FileWriter rSaver = new FileWriter("restaurants.txt");
        for(int i = 0; i < restaurantList.size(); i++) {
@@ -88,5 +95,21 @@ public class Restaurant {
            rSaver.close();
        }
    }
+
+    public void addRest(Restaurant a) {
+        restaurantList.add(a);
+    }
+
+    public ArrayList<Restaurant> getRestaurantList() {
+        return restaurantList;
+    }
+
+    public String toString(){
+        return this.restaurantName + ", rating: " + this.ranking;
+   }
+
+    public int getRestaurantId(){
+        return restaurantId;
+    }
 
 }

@@ -8,14 +8,16 @@ public class ReservationSystem {
         //check if its not occupied
         //set reservation
 
-        if(isTableFree(tableId, hour)) {
+        /*if(isTableFree(tableId, hour)) {
             Restaurant r = new Restaurant();
             r.reserve(tableId - 1, hour,numberOfPeople);
 
-        }
+        }*/
     }
 
-    public static boolean isTableFree(int tableId, int hour){return true;}
+    public static boolean isTableFree(int tableId, int hour){
+
+        return true;}
 
     public static boolean cancelReservation(int customerId,int tableId, int hour){
         return true;
