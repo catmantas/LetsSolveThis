@@ -19,9 +19,9 @@ public class Restaurant {
         this.ranking = ranking;
         this.tablesList = new ArrayList<>();
     }
-    public Restaurant()throws FileNotFoundException {
+    public Restaurant()/*throws FileNotFoundException*/ {
 
-        this.tablesList = new ArrayList<>();
+        /*this.tablesList = new ArrayList<>();
         Scanner scan = new Scanner(new File("restaurants.txt"));
         scan.useDelimiter(",|\n");
 
@@ -31,8 +31,10 @@ public class Restaurant {
             int ranking = scan.nextInt();
 
             Restaurant newRest = new Restaurant(id, name, ranking);
+            ArrayList tableList = new ArrayList<>();
+            this.tablesList = tableList;
             restaurantList.add(newRest);
-        }
+        }*/
     }
 
     public String getRestaurantName() {
@@ -111,5 +113,17 @@ public class Restaurant {
     public int getRestaurantId(){
         return restaurantId;
     }
+
+    public int returnId(String restName){
+        int restID = 0;
+        for (Restaurant r : restaurantList) {
+            if (r.getRestaurantName().equals(restName)) {
+                restID = r.getRestaurantId();
+                break;
+            }
+        }
+        return restID;
+    }
+
 
 }
