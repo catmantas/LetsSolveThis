@@ -1,13 +1,29 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ReservationSystem {
 
-    public ReservationSystem(String restaurantName, int customerId,int tableId, int hour, int numberOfPeople){
+    public ReservationSystem(String restaurantName, int customerId,int tableId, int hour, int numberOfPeople) throws IOException{
         Restaurant r = new Restaurant();
-        //int id = r.returnId(restaurantName);
+        ArrayList restList = r.getRestaurantList();
+        int id = r.returnId(restaurantName);
 
-        isTableFree(r.returnId(restaurantName), tableId, 0);
+        if(isTableFree(id, tableId, hour)){
+            for (int i = 0; i < r.getRestaurantList().size(); i++){
+                if(r.getRestaurant(i).getTable(tableId).getNumberOfSeats() <= numberOfPeople || r.getRestaurant(i).getTable(tableId).getAvailability(hour).equals("available")){
+                    System.out.println("Victory");
+                    r.getRestaurant(i).reserve(tableId, hour, numberOfPeople);
+
+
+                }
+            }
+
+        }
+        else System.out.println("defeat"); // default outcome, neveikia zopa
+
+
+    }
 
 
         //Check if it can fit the people
@@ -19,18 +35,25 @@ public class ReservationSystem {
             r.reserve(tableId - 1, hour,numberOfPeople);
 
         }*/
-    }
+
+    /*(ppl <= tablesList.get(table).getNumberOfSeats()) {
+            tablesList.get(table).returnSchedule().replace(String.valueOf(hour), "available", "unavailable");
+            System.out.println("Table reserved");
+            */
 
     public static boolean isTableFree(int restID, int tableId, int hour){
+
+        boolean freedom = false;
+
         Restaurant r = new Restaurant();
+
         for(int i = 0; i < r.getRestaurantList().size(); i++) {
-            if (r.getRestaurantList().get(i).getRestaurantId() == restID) {
-                r.getRestaurantList().get(i).schedule(tableId);
-                System.out.println("aaaaaa");
+            if (r.getRestaurant(i).getRestaurantId() == restID){// || r.getRestaurant(i).getTable(tableId).getAvailability(hour).equals("available")) {
+                freedom = true;
+                break;
             }
-            else System.out.println("neeeee");
         }
-        return true;
+        return freedom;
     }
 
     public static boolean cancelReservation(int customerId,int tableId, int hour){
@@ -39,6 +62,9 @@ public class ReservationSystem {
 
     public static boolean updateReservation(int customerId,int tableId, int hour){
         return true;
+    }
+    public String toString(){
+        return "reaseras";
     }
 
 }

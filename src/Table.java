@@ -13,17 +13,17 @@ public class Table {
         this.tableId = id;
         this.numberOfSeats = seatsNumber;
         HashMap<String, String> tableShedule = new HashMap<>();
-        for (int i = 0; i <= 24; i++){
+        for (int i = 0; i <= 23; i++){
             tableShedule.put(String.valueOf(i), "available");
         }
         this.tableSchedule = tableShedule;
     }
-    public Table()throws IOException {
+    /*public Table()throws IOException {
         Restaurant r = new Restaurant();
         for (int i = 0; i < r.getRestaurantList().size(); i++) {
             Scanner tblscan = new Scanner(new File("tables\\" + i + "table.txt"));
             tblscan.useDelimiter(",|\n");
-            ArrayList tableList = r.getRestaurantList().get(i).getTables();
+            ArrayList tableList = r.getRestaurant(i).getTableList();
 
             while(tblscan.hasNext()) {
                 int tableId = tblscan.nextInt();
@@ -33,7 +33,7 @@ public class Table {
                 this.numberOfSeats = tableSeat;
                 this.tableId = tableId;
                 HashMap<String, String> tableSchedule = new HashMap<>();
-                for (int j = 0; j <= 24; j++){
+                for (int j = 0; j <= 23; j++){
                     tableSchedule.put(String.valueOf(j), "available");
                 }
                 this.tableSchedule = tableSchedule;
@@ -41,7 +41,7 @@ public class Table {
                 tableList.add(newTable);
             }
         }
-    }
+    }*/
     /*public Table(int id, int seatsNumber, HashMap<String, String> tableSchedule){
         this.tableId = id;
         this.numberOfSeats = seatsNumber;

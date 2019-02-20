@@ -21,17 +21,37 @@ public class Main {
         r.addRest(r1);
         r.addRest(pizza);
 
-        System.out.println(r.returnId("äaaaa"));
-        System.out.println(r.returnId("Ayyo"));
+        //System.out.println(r.returnId("äaaaa"));
+        //System.out.println(r.returnId("Ayyo"));
 
-        ReservationSystem rs = new ReservationSystem("Ayyo", 0, 1, 0, 0);
+        //pizza.schedule(1);
 
-        System.out.println(rs);
+        System.out.println(r.getRestaurant(1).getTable(1).getNumberOfSeats());
+        System.out.println(r.getRestaurant(1).getTable(1).getAvailability(3));
+
+        ReservationSystem rs = new ReservationSystem("Ayyo", 0, 1, 3, 1);
+
+        System.out.println(r.getRestaurant(1).getTable(1).getAvailability(3));
+
+        if(r.getRestaurant(1).getTable(1).getAvailability(3).equals("available")){
+            System.out.println("ayy");
+        }
+        else System.out.println("nayy");
+
+        //pizza.schedule(1);
+
+        //r.getRestaurantList().get(1).reserve(1,3,1);
+
+        //pizza.schedule(1);
 
 
+    }
 
-
-
-
+    static int addSauce(){
+        int sauce = 0;
+        for (int i = 0; i >= 0; i++){
+            sauce = i;
+        }
+        return sauce;
     }
 }

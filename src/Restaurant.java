@@ -69,9 +69,8 @@ public class Restaurant {
    public void removeTable(int tableId){
 
    }
-   public void reserve(int table, int hour, int ppl)throws IOException{
-        Table t = new Table();
-        if(ppl <= tablesList.get(table).getNumberOfSeats()) {//|| ppl <= t.getTables().get(table).getNumberOfSeats()){
+   public void reserve(int table, int hour, int ppl){
+        if(ppl <= tablesList.get(table).getNumberOfSeats()) {
             tablesList.get(table).returnSchedule().replace(String.valueOf(hour), "available", "unavailable");
             System.out.println("Table reserved");
         }
@@ -80,12 +79,22 @@ public class Restaurant {
 
    public void schedule(int table){
        System.out.println("\n" + this.restaurantName + "\nTable " + tablesList.get(table).getTableId());
-        for(int i = 0; i <= 24; i++){
+        for(int i = 0; i <= 23; i++){
             System.out.println(i + "    " + tablesList.get(table).returnSchedule().get(String.valueOf(i)));
         }
    }
-   public ArrayList getTables(){
+   public ArrayList getTableList(){
         return this.tablesList;
+   }
+
+   public Table getTable(int tableId){
+        Table t = tablesList.get(tableId);
+        return t;
+   }
+
+   public Restaurant getRestaurant(int index){
+        Restaurant rest = restaurantList.get(index);
+        return rest;
    }
 
    public void saveRestaurants()throws IOException {
