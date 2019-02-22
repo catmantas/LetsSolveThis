@@ -33,10 +33,6 @@ public class Main {
 
         System.out.println(r.getRestaurant(1).getTable(1).getAvailability(3));
 
-        if(r.getRestaurant(1).getTable(1).getAvailability(3).equals("available")){
-            System.out.println("ayy");
-        }
-        else System.out.println("nayy");
 
         //pizza.schedule(1);
 

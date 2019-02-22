@@ -9,13 +9,19 @@ public class ReservationSystem {
         ArrayList restList = r.getRestaurantList();
         int id = r.returnId(restaurantName);
 
-        if(isTableFree(id, tableId, hour)){
+        /**
+         * isskaidyta i kelis ifus izoliacijai
+         */
+        if(!isTableFree(id, tableId, hour)){
+            System.out.println("aaaa");
             for (int i = 0; i < r.getRestaurantList().size(); i++){
-                if(r.getRestaurant(i).getTable(tableId).getNumberOfSeats() <= numberOfPeople || r.getRestaurant(i).getTable(tableId).getAvailability(hour).equals("available")){
-                    System.out.println("Victory");
-                    r.getRestaurant(i).reserve(tableId, hour, numberOfPeople);
-
-
+                System.out.println(r.getRestaurantList().get(i).getTable(tableId).getNumberOfSeats());
+                if(r.getRestaurant(i).getTable(tableId).getNumberOfSeats() >= numberOfPeople){
+                    System.out.println("step 1");
+                    if(r.getRestaurant(i).getTable(tableId).getAvailability(hour).equals("available")) {
+                        System.out.println("Victory");
+                        r.getRestaurant(i).reserve(tableId, hour, numberOfPeople);
+                    }
                 }
             }
 
@@ -41,6 +47,9 @@ public class ReservationSystem {
             System.out.println("Table reserved");
             */
 
+    /**
+     * basic ifas kad fo sho tru/false mestu
+     */
     public static boolean isTableFree(int restID, int tableId, int hour){
 
         boolean freedom = false;
@@ -48,7 +57,8 @@ public class ReservationSystem {
         Restaurant r = new Restaurant();
 
         for(int i = 0; i < r.getRestaurantList().size(); i++) {
-            if (r.getRestaurant(i).getRestaurantId() == restID){// || r.getRestaurant(i).getTable(tableId).getAvailability(hour).equals("available")) {
+            if (r.getRestaurantList().get(i).getRestaurantId() == restID){// || r.getRestaurant(i).getTable(tableId).getAvailability(hour).equals("available")) {
+                System.out.println("freedom is true");
                 freedom = true;
                 break;
             }
@@ -66,5 +76,6 @@ public class ReservationSystem {
     public String toString(){
         return "reaseras";
     }
+
 
 }
